@@ -34,20 +34,19 @@ import java.text.DateFormat;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-//    @BindView(R.id.saveBtn) MaterialButton save;
-    RadioGroup radioGroup;
-    Spinner spinner, mSpinner;
-    RadioButton radioButton;
-    TextInputEditText nameField, phoneField,ageField, idField, occupationField, wardField,
-            villageField, districtField, constituencyField, emailField;
-
     private static final String TAG = MainActivity.class.getSimpleName();
     public static final String[] provinces = {" ", "Bulawayo", "Harare", "Manicaland",
             "Mashonaland Central", "Mashonaland East", "Mashonaland West","Masvingo",
             "Matebeleland North", "Matebeleland South", "Midlands"};
     public static final String[] education = {" ","Ordinary Level", "Advanced Level",
             "National Certificate", "National Diploma","Higher National Diploma",
-            "BA, BComm, BSc, BTech", "MA, MSc, MPhil", "PhD"};
+            "Bachelors Degree", "Masters Degree", "Doctorate"};
+
+    RadioGroup radioGroup;
+    Spinner spinner, mSpinner;
+    RadioButton radioButton;
+    TextInputEditText nameField, phoneField,ageField, idField, occupationField, wardField,
+            villageField, districtField, constituencyField, emailField;
 
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
@@ -59,8 +58,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        ButterKnife.bind(this);
-//        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        setTitle(R.string.app_name);
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
@@ -160,11 +159,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         datePickerDialog.show();
     }
 
-//    @OnClick(R.id.saveBtn)
-//    public void OnClick(View view){
-//        addData();
-//    }
-
     public void saveEntry(View view) {
         TextView textView = (TextView) mSpinner.getSelectedView();
         TextView textView1 = (TextView) spinner.getSelectedView();
@@ -205,7 +199,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void createUser(String name, String age, String gender, String idNumber, String occupation, String education, String village, String ward, String constituency, String district, String province, String phone, String email) {
         if (TextUtils.isEmpty(userId)){
             userId = mFirebaseDatabase.push().getKey();
-            Toast.makeText(this, "New Entry Successfully Added to the Database!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "New Entry Successfully Entered. Add more!",
+                    Toast.LENGTH_LONG).show();
         }
 
         User user = new User(name, age, gender, idNumber, occupation, education, village, ward, constituency, district, province, phone, email);
@@ -340,4 +335,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             auth.removeAuthStateListener(authListener);
         }
     }
+
 }

@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
         inputEmail = findViewById(R.id.email);
         inputPassword = findViewById(R.id.password);
-        progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBar1);
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
@@ -87,6 +87,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void signUp(View v) {
         startActivity(new Intent(this, SignUpActivity.class));
+        finish();
     }
 
     public void resetPassword(View v) {
@@ -97,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
 
         final TextInputEditText editEmail = dialogView.findViewById(R.id.email);
         final MaterialButton btnReset = dialogView.findViewById(R.id.btn_reset_password);
-        final ProgressBar progressBar1 = dialogView.findViewById(R.id.progressBar);
+        final ProgressBar progressBar1 = dialogView.findViewById(R.id.progressBar2);
 
         //dialogBuilder.setTitle("Send Photos");
         final AlertDialog dialog = dialogBuilder.create();
@@ -134,4 +135,5 @@ public class LoginActivity extends AppCompatActivity {
         });
         dialog.show();
     }
+
 }

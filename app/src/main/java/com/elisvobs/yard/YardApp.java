@@ -9,4 +9,5 @@ public class YardApp extends Application {
         super.onCreate();
         com.google.firebase.FirebaseApp.initializeApp(getApplicationContext());
     }
+
 }

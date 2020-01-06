@@ -2,20 +2,17 @@ package com.elisvobs.yard;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class ProfileActivity extends AppCompatActivity {
-//    @BindView(R.id.email) TextView email;
-//    @BindView(R.id.sign_out) Button signOut;
     TextView email;
-    Button signOut;
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
 
@@ -23,8 +20,6 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-//        ButterKnife.bind(this);
-
 
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
@@ -45,12 +40,7 @@ public class ProfileActivity extends AppCompatActivity {
         email.setText(user != null ? user.getEmail() : null);
     }
 
-//    @OnClick(R.id.sign_out)
     public void OnClick(View view){
-        signOut();
-    }
-
-    public void signOut() {
         auth.signOut();
     }
 
